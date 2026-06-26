@@ -1,32 +1,40 @@
 /* ============================================================
    Ecuador, Are You Serious? — all the playful interactivity.
    Pure vanilla JS, no dependencies, no build step.
-   Everything here is good-natured soccer banter. ⚽😄
+   Every joke is built from REAL facts about Ecuador's 2026
+   World Cup Group E run. All good-natured banter. ⚽😄
+
+   The facts (for reference):
+   - Ecuador 2–1 Germany, 25 Jun 2026, Group E, MetLife Stadium.
+   - Despite winning, Ecuador finished 3rd — below Germany AND Ivory Coast.
+   - Germany finished top and had ALREADY qualified before kickoff.
+   - Ecuador had scored 0 goals in the tournament before this game.
+   - First two games: lost to Ivory Coast, drew Curaçao (pop. ~150k).
+   - Ecuador advanced only as a "best third-placed team."
+   - Germany scored in the 2nd min (Sané); Ecuador won it in the 77th (Plata).
    ============================================================ */
 
 /* ------------------------------------------------------------
-   1. ROTATING TAUNTS
-   Cheeky one-liners that cycle in the hero every few seconds.
+   1. ROTATING TAUNTS — each one rooted in a real stat.
    ------------------------------------------------------------ */
 const taunts = [
-  "One win over Germany and suddenly you're a footballing superpower? 😂",
-  "Beating Germany once is like winning one hand of poker and retiring undefeated.",
-  "We get it, you beat Germany. Should we frame it? Build a museum?",
-  "Germany lost ONE game and you're acting like you lifted the World Cup. 🏆❓",
-  "Plot twist: it counts as ONE win, not a national holiday.",
-  "Ecuador beat Germany. In other news, water is wet and the bragging is eternal.",
-  "Still waiting on that second World Cup title… we'll hold. ⏳",
-  "Quito's altitude did more work than the strikers, let's be honest. ⛰️",
-  "The win was real. So is our need to talk about literally anything else now.",
-  "Congrats on the win! Now let's discuss the OTHER 90% of matches. 👀",
+  "Final score: Ecuador 2, Germany 1. Final standings: Germany 1st, Ecuador 3rd. Math is undefeated. 😅",
+  "You beat a team that had ALREADY qualified. They were basically on holiday. 🏖️",
+  "Germany scored in the 2nd minute. You needed until the 77th. But sure — total domination. ⏱️",
+  "Zero goals in your first two games. Then you 'woke up' against a team with nothing to play for.",
+  "You lost to Ivory Coast, drew Curaçao (pop. 150k), and finished 3rd. CHAMPIONS! 🥉",
+  "Germany had nothing to play for. You had everything. You STILL finished below them. Poetry. 📜",
+  "You qualified as a 'best third-placed team.' Through the side door. 🚪",
+  "Beating an already-qualified Germany in a dead rubber isn't a trophy — but enjoy the parade. 🎉",
+  "One competitive goal in three games and it's a national holiday now? 📅",
+  "Curaçao has ~150,000 people and held you to a draw. Let that marinate. 🇨🇼",
 ];
 
 let tauntIndex = 0;
 const tauntEl = document.getElementById("taunt");
 
-// Show the first taunt immediately, then rotate on a timer.
+// Show a taunt, fading out/in so the layout doesn't jump.
 function showTaunt() {
-  // fade out, swap text, fade back in for a smooth transition
   tauntEl.style.opacity = "0";
   setTimeout(() => {
     tauntEl.textContent = taunts[tauntIndex];
@@ -39,88 +47,76 @@ showTaunt(); // first one right away
 setInterval(showTaunt, 4000); // then every 4 seconds
 
 /* ------------------------------------------------------------
-   2. OFFICIAL EXCUSE GENERATOR
-   Spits out a random "reason" the win didn't count.
+   2. GROUP E goals-before-this-game counter.
+   Dramatically "ticks up"… and lands on the grand total of 0.
    ------------------------------------------------------------ */
-const excuses = [
-  "It was just a friendly. Friendlies don't count. Everyone knows that. 🤝",
-  "Germany was clearly experimenting with a brand-new lineup. Science!",
-  "The referee had a flight to catch and rushed the whole thing. ✈️",
-  "Germany's bus got stuck in traffic and they played jet-lagged. 🚌",
-  "It was windy. Statistically, wind favors the home team. 🌬️",
-  "Germany's best players were 'resting.' All of them. At once.",
-  "VAR was on a coffee break for the entire second half. ☕",
-  "The ball was slightly rounder than regulation. Suspicious.",
-  "Ecuador had the altitude advantage. And the gravity advantage. Probably.",
-  "Germany was being polite. They're guests, after all. 🙇",
-  "Mercury was in retrograde and Germany are very sensitive to astrology. ♏",
-  "It was a Tuesday. Germany historically underperforms on Tuesdays.*",
-  "The grass was the wrong shade of green and threw everyone off. 🟩",
-  "Germany lent Ecuador their lucky cleats out of kindness. Big mistake.",
-  "Honestly? We blinked and missed it, so it probably didn't happen. 😉",
-];
+const goalsCounter = document.getElementById("goals-counter");
+const goalsCaption = document.getElementById("goals-caption");
 
-const excuseBtn = document.getElementById("excuse-btn");
-const excuseOutput = document.getElementById("excuse-output");
-let lastExcuse = -1;
-
-excuseBtn.addEventListener("click", () => {
-  // Pick a random excuse that isn't the same as the last one shown.
-  let idx;
-  do {
-    idx = Math.floor(Math.random() * excuses.length);
-  } while (idx === lastExcuse && excuses.length > 1);
-  lastExcuse = idx;
-
-  excuseOutput.style.opacity = "0";
-  setTimeout(() => {
-    excuseOutput.textContent = "“" + excuses[idx] + "”";
-    excuseOutput.style.opacity = "1";
-  }, 200);
-
-  // A little celebratory burst makes the button feel alive.
-  launchConfetti(40);
-});
-
-/* ------------------------------------------------------------
-   3. SCOREBOARD — animate the absurd stats counting up
-   Uses IntersectionObserver so they count up when scrolled into view.
-   ------------------------------------------------------------ */
-function animateCount(el) {
-  const target = Number(el.dataset.target);
-  const duration = 1200; // ms
-  const start = performance.now();
-
-  function tick(now) {
-    const progress = Math.min((now - start) / duration, 1);
-    // easeOutQuad for a snappy finish
-    const eased = 1 - (1 - progress) * (1 - progress);
-    el.textContent = Math.floor(eased * target).toLocaleString();
-    if (progress < 1) requestAnimationFrame(tick);
-    else el.textContent = target.toLocaleString();
-  }
-  requestAnimationFrame(tick);
+// Plays a little drumroll of digits, then reveals the truth: zero.
+function dramaticZero() {
+  let ticks = 0;
+  const maxTicks = 14;
+  const roll = setInterval(() => {
+    // flicker some "hopeful" numbers to build suspense
+    goalsCounter.textContent = Math.floor(Math.random() * 9) + 1;
+    ticks++;
+    if (ticks >= maxTicks) {
+      clearInterval(roll);
+      goalsCounter.textContent = "0";
+      goalsCaption.textContent =
+        "That's right: ZERO goals in the first two games. Then came the dead rubber. 🥁";
+    }
+  }, 110);
 }
 
-const statNumbers = document.querySelectorAll(".stat-number");
-const observer = new IntersectionObserver(
+// Only run the drumroll when the counter scrolls into view.
+const goalsObserver = new IntersectionObserver(
   (entries, obs) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        animateCount(entry.target);
-        obs.unobserve(entry.target); // only animate once
+        dramaticZero();
+        obs.unobserve(entry.target); // only once
       }
     });
   },
-  { threshold: 0.5 }
+  { threshold: 0.6 }
 );
-statNumbers.forEach((n) => observer.observe(n));
+goalsObserver.observe(goalsCounter);
 
 /* ------------------------------------------------------------
-   4. COUNTDOWN to "the next time it'll happen"
+   3. ASTERISK REVEAL — flip the script: the WINNER needs excuses.
+   Each click reveals the next asterisk; when all are shown,
+   the button resets so it can be replayed.
+   ------------------------------------------------------------ */
+const asteriskBtn = document.getElementById("asterisk-btn");
+const asterisks = Array.from(document.querySelectorAll("#asterisk-list li"));
+let revealed = 0;
+
+asteriskBtn.addEventListener("click", () => {
+  if (revealed < asterisks.length) {
+    asterisks[revealed].classList.add("show");
+    revealed++;
+    // Update the label as we go.
+    if (revealed === asterisks.length) {
+      asteriskBtn.textContent = "Wow. That's a lot of asterisks. (Reset)";
+    } else {
+      asteriskBtn.textContent = `Reveal the Next Asterisk * (${revealed}/${asterisks.length})`;
+    }
+    launchConfetti(18); // a tiny, humble burst per reveal
+  } else {
+    // Reset to replay the bit.
+    asterisks.forEach((li) => li.classList.remove("show"));
+    revealed = 0;
+    asteriskBtn.textContent = "Reveal the Asterisks *";
+  }
+});
+
+/* ------------------------------------------------------------
+   4. COUNTDOWN to "the next win that actually mattered."
    Set absurdly far in the future for comedic effect.
    ------------------------------------------------------------ */
-// The year 2525 — when scientists predict the next big upset. 🔭
+// The year 2525 — when scientists predict the next meaningful win. 🔭
 const targetDate = new Date("2525-01-01T00:00:00").getTime();
 
 const yearsEl = document.getElementById("years");
@@ -160,15 +156,13 @@ updateCountdown();
 setInterval(updateCountdown, 1000);
 
 /* ------------------------------------------------------------
-   5. CONFETTI 🎉
-   A tiny self-contained confetti system on a full-screen canvas.
-   Triggered by clicking anywhere, or the dedicated buttons.
+   5. CONFETTI 🥉 — deliberately TINY and humble, in bronze-medal
+   spirit. Clicking anywhere also pops a little "3rd place!" text.
    ------------------------------------------------------------ */
 const canvas = document.getElementById("confetti-canvas");
 const ctx = canvas.getContext("2d");
 let confetti = [];
 
-// Keep the canvas matched to the window size (and on resize).
 function resizeCanvas() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
@@ -176,10 +170,11 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 
-// Confetti in Ecuador's colors, naturally.
-const confettiColors = ["#ffdd00", "#0072ce", "#ef3340", "#ffffff"];
+// Mostly bronze, with a little Ecuador color sprinkled in.
+const confettiColors = ["#cd7f32", "#cd7f32", "#ffdd00", "#0072ce", "#ef3340"];
 
-function launchConfetti(amount = 80, originX = null, originY = null) {
+// Note: sizes are intentionally small — a humble, 3rd-place celebration.
+function launchConfetti(amount = 30, originX = null, originY = null) {
   const ox = originX ?? window.innerWidth / 2;
   const oy = originY ?? window.innerHeight / 3;
 
@@ -187,14 +182,13 @@ function launchConfetti(amount = 80, originX = null, originY = null) {
     confetti.push({
       x: ox,
       y: oy,
-      // random spread + upward-ish initial velocity
-      vx: (Math.random() - 0.5) * 12,
-      vy: Math.random() * -10 - 4,
-      size: Math.random() * 8 + 4,
+      vx: (Math.random() - 0.5) * 6, // weaker spread = sadder confetti
+      vy: Math.random() * -6 - 2, // a feeble little pop
+      size: Math.random() * 3 + 1.5, // tiny pieces
       color: confettiColors[Math.floor(Math.random() * confettiColors.length)],
       rotation: Math.random() * 360,
-      spin: (Math.random() - 0.5) * 20,
-      life: 1, // fades from 1 -> 0
+      spin: (Math.random() - 0.5) * 16,
+      life: 1,
     });
   }
 }
@@ -203,13 +197,12 @@ function renderConfetti() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   confetti.forEach((p) => {
-    // physics: gravity + drag + fade
-    p.vy += 0.3; // gravity
+    p.vy += 0.28; // gravity
     p.vx *= 0.99; // air drag
     p.x += p.vx;
     p.y += p.vy;
     p.rotation += p.spin;
-    p.life -= 0.008;
+    p.life -= 0.012; // fade a touch faster — the joy doesn't last
 
     ctx.save();
     ctx.globalAlpha = Math.max(p.life, 0);
@@ -220,22 +213,36 @@ function renderConfetti() {
     ctx.restore();
   });
 
-  // Drop confetti that has faded or fallen off-screen.
   confetti = confetti.filter((p) => p.life > 0 && p.y < canvas.height + 50);
-
   requestAnimationFrame(renderConfetti);
 }
-renderConfetti(); // run the render loop continuously
+renderConfetti();
 
-// Click ANYWHERE to celebrate, bursting from the click point.
+// Pop a small floating "3rd place!" text at a screen position.
+const popMessages = ["🥉 3rd place!", "Below Germany! 🥉", "Still 3rd! 🎉", "Best of the third-placed! 🚪"];
+let popIndex = 0;
+function popCelebrationText(x, y) {
+  const el = document.createElement("div");
+  el.className = "celebrate-pop";
+  el.textContent = popMessages[popIndex % popMessages.length];
+  popIndex++;
+  el.style.left = x + "px";
+  el.style.top = y + "px";
+  document.body.appendChild(el);
+  // remove after the float-up animation finishes
+  setTimeout(() => el.remove(), 1300);
+}
+
+// Click ANYWHERE to celebrate (humbly), bursting from the click point.
 document.addEventListener("click", (e) => {
-  launchConfetti(60, e.clientX, e.clientY);
+  launchConfetti(24, e.clientX, e.clientY);
+  popCelebrationText(e.clientX, e.clientY);
 });
 
-// Dedicated celebrate button (in addition to the global click).
+// Dedicated "Celebrate (Humbly)" button — still humble, just a bit more.
 const celebrateBtn = document.getElementById("celebrate-btn");
 celebrateBtn.addEventListener("click", () => {
-  // Big double burst for extra drama. 🎊
-  launchConfetti(120);
-  setTimeout(() => launchConfetti(120, window.innerWidth / 2, window.innerHeight / 2), 250);
+  // A modest double-pop. Don't get carried away — it's 3rd place. 🥉
+  launchConfetti(40);
+  setTimeout(() => launchConfetti(30, window.innerWidth / 2, window.innerHeight / 2.5), 220);
 });

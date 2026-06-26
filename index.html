@@ -4,95 +4,153 @@
   <meta charset="UTF-8" />
   <!-- Responsive: scale to device width so it looks great on phones -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ecuador, Are You Serious? 🇪🇨😂</title>
+  <title>Ecuador, Are You Serious? 🥉</title>
   <meta
     name="description"
-    content="A loving, good-natured roast of the Ecuador national soccer team. All in good fun!"
+    content="A loving, good-natured roast of Ecuador's 2026 World Cup run — packed with real stats. All in good fun!"
   />
   <link rel="stylesheet" href="style.css" />
-  <!-- Cheeky soccer-ball favicon so the browser tab is on theme -->
+  <!-- Bronze-medal favicon, on theme for our 3rd-place champions -->
   <link
     rel="icon"
-    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥉</text></svg>"
   />
 </head>
 <body>
   <!-- ============================================================
-       HERO: big bold headline + rotating taunts
+       HERO: big bold headline + rotating fact-based taunts
        ============================================================ -->
   <header class="hero">
     <div class="flag-stripe" aria-hidden="true"></div>
 
+    <p class="kicker">Ecuador 2 – 1 Germany · 25 June 2026 · World Cup Group E</p>
+
     <h1 class="headline">
-      Ecuador, <span class="wobble">Are You Serious?</span>
+      You Beat a Team With <span class="wobble">Nothing to Play For</span>…
+      and STILL Finished <em>Below</em> Them.
     </h1>
 
     <!-- This line gets swapped out every few seconds by script.js -->
     <p id="taunt" class="taunt">Loading world-class banter…</p>
 
     <p class="subhead">
-      A loving roast of <strong>La Tri</strong> — because somebody won't stop
-      bragging about that one game. 🏆😅
+      A loving roast of <strong>La Tri</strong>'s 2026 run — because somebody
+      won't stop bragging about beating a team that had <em>already qualified</em>. 🏆😅
     </p>
 
     <!-- Friendly nudge to interact -->
-    <p class="hint">Pssst… click anywhere for a surprise 🎉</p>
+    <p class="hint">Pssst… click anywhere for a (very humble) celebration 🥉</p>
   </header>
 
   <main>
     <!-- ============================================================
-         OFFICIAL EXCUSE GENERATOR
+         GROUP E FINAL STANDINGS — proudly showing 3rd place
          ============================================================ -->
-    <section class="card excuse-section">
-      <h2>🤓 Official Excuse Generator™</h2>
-      <p class="muted">
-        Click the button for the <em>real</em> reason that win didn't count.
+    <section class="card standings-section">
+      <h2>📋 Group E — Final Standings</h2>
+      <p class="muted">The part of the story that mysteriously never comes up.</p>
+
+      <!-- The flashing badge of honor -->
+      <div class="bronze-badge">🥉 CHAMPIONS OF 3RD PLACE</div>
+
+      <table class="standings">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Team</th>
+            <th>Note</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>🇩🇪 Germany</td>
+            <td>Won the group. Already qualified <em>before</em> the Ecuador game.</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>🇨🇮 Ivory Coast</td>
+            <td>Beat Ecuador head-to-head. Casually finished above them.</td>
+          </tr>
+          <!-- Our heroes, highlighted -->
+          <tr class="highlight">
+            <td>3</td>
+            <td>🇪🇨 Ecuador</td>
+            <td>Backed in as a "best third-placed team." 🥉 Legends.</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>🇨🇼 Curaçao</td>
+            <td>Population ~150,000. Still got a draw out of Ecuador.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="muted tiny">
+        Final positions are 100% real. Below Germany. Below Ivory Coast. 🥉
       </p>
-      <button id="excuse-btn" class="big-btn">Generate Official Excuse</button>
-      <!-- The generated excuse lands here -->
-      <p id="excuse-output" class="excuse-output">Awaiting your skepticism…</p>
     </section>
 
     <!-- ============================================================
-         SCOREBOARD OF SHAME (totally made-up absurd stats)
+         GOALS BEFORE THIS GAME — dramatic counter that hits zero
          ============================================================ -->
-    <section class="card scoreboard-section">
-      <h2>📊 Scoreboard of Shame</h2>
-      <p class="muted">100% real, peer-reviewed, definitely-not-made-up stats.</p>
-      <div class="stats-grid">
-        <div class="stat">
-          <span class="stat-number" data-target="1">0</span>
-          <span class="stat-label">times beating Germany (and we'll NEVER hear the end of it)</span>
-        </div>
-        <div class="stat">
-          <span class="stat-number" data-target="9000">0</span>
-          <span class="stat-label">times the story has been retold at dinner</span>
-        </div>
-        <div class="stat">
-          <span class="stat-number" data-target="0">0</span>
-          <span class="stat-label">World Cups won (so far… we believe in you)</span>
-        </div>
-        <div class="stat">
-          <span class="stat-number" data-target="100">0</span>
-          <span class="stat-label">% chance this site gets sent to the group chat</span>
-        </div>
-        <div class="stat">
-          <span class="stat-number" data-target="3">0</span>
-          <span class="stat-label">altitude excuses used per match (Quito advantage™)</span>
-        </div>
-        <div class="stat">
-          <span class="stat-number" data-target="11">0</span>
-          <span class="stat-label">players who suddenly became "legends" overnight</span>
-        </div>
+    <section class="card goals-section">
+      <h2>⚽ Goals Scored Before This Game</h2>
+      <p class="muted">
+        Across the first two matches of the tournament. Brace yourself. The
+        number is climbing…
+      </p>
+      <div id="goals-counter" class="mega-number">0</div>
+      <p id="goals-caption" class="muted">Counting every single one…</p>
+    </section>
+
+    <!-- ============================================================
+         FLIPPED EXCUSE SECTION — *you* need the asterisks
+         ============================================================ -->
+    <section class="card asterisk-section">
+      <h2>🤔 Official Excuse Genera— wait, YOU Need Excuses?</h2>
+      <p class="muted">
+        Usually the <em>loser</em> makes excuses. But this win came with a
+        suspicious number of asterisks. Reveal them one by one:
+      </p>
+      <button id="asterisk-btn" class="big-btn">Reveal the Asterisks *</button>
+      <!-- script.js reveals these list items one at a time -->
+      <ul id="asterisk-list" class="asterisk-list">
+        <li>* Germany had <strong>already qualified</strong> — top of the group — before kickoff. Dead rubber. ☠️</li>
+        <li>* The match meant <strong>nothing</strong> to Germany and <strong>everything</strong> to Ecuador.</li>
+        <li>* Ecuador had scored <strong>zero goals</strong> in the entire tournament before this.</li>
+        <li>* Game 1: <strong>lost</strong> to Ivory Coast. Game 2: <strong>drew</strong> Curaçao (pop. ~150k).</li>
+        <li>* Germany scored in the <strong>2nd minute</strong>. Ecuador needed until the <strong>77th</strong>.</li>
+        <li>* Ecuador advanced only as one of the <strong>"best third-placed teams."</strong> 🚪</li>
+        <li>* Final result: a glorious, hard-earned… <strong>3rd place</strong>. 🥉</li>
+      </ul>
+    </section>
+
+    <!-- ============================================================
+         CURAÇAO CALLOUT
+         ============================================================ -->
+    <section class="card curacao-section">
+      <h2>🇨🇼 Teams Ecuador Couldn't Beat (or even draw… wait, they drew)</h2>
+      <div class="curacao-box">
+        <p class="big-fact">Curaçao</p>
+        <p>
+          Population <strong>~150,000</strong> — a country smaller than most
+          mid-size cities — held Ecuador to a <strong>draw</strong>.
+        </p>
+        <p class="muted">
+          But yes, absolutely, let's talk more about Germany. 😌
+        </p>
       </div>
     </section>
 
     <!-- ============================================================
-         COUNTDOWN to "the next time it'll happen"
+         COUNTDOWN to the next *meaningful* win
          ============================================================ -->
     <section class="card countdown-section">
-      <h2>⏳ Countdown to the Next Big Win</h2>
-      <p class="muted">Our scientists calculated the exact date. Mark your calendar.</p>
+      <h2>⏳ Countdown to the Next Win That Actually Mattered</h2>
+      <p class="muted">
+        i.e. the next time Ecuador beats a team that genuinely needed the
+        result. Our scientists ran the numbers.
+      </p>
       <div id="countdown" class="countdown">
         <div class="time-box"><span id="years">0</span><small>years</small></div>
         <div class="time-box"><span id="days">0</span><small>days</small></div>
@@ -103,11 +161,11 @@
       <p class="muted tiny">* Estimate may be optimistic.</p>
     </section>
 
-    <!-- A button to deliberately trigger the confetti, too -->
+    <!-- Deliberate celebration trigger (humble by design) -->
     <section class="card celebrate-section">
-      <h2>🎉 Feeling Defensive?</h2>
-      <p class="muted">Go ahead, celebrate that one win one more time.</p>
-      <button id="celebrate-btn" class="big-btn alt">Throw Confetti!</button>
+      <h2>🥉 Feeling Defensive?</h2>
+      <p class="muted">Go on, celebrate the famous victory one more time.</p>
+      <button id="celebrate-btn" class="big-btn alt">Celebrate (Humbly)</button>
     </section>
   </main>
 
@@ -116,12 +174,11 @@
        ============================================================ -->
   <footer class="footer">
     <div class="flag-stripe" aria-hidden="true"></div>
-    <p>
-      💛💙❤️ Made with love (and zero hard feelings) for my favorite Ecuadorian.
-    </p>
+    <p>💛💙❤️ Made with love (and zero hard feelings) for my favorite Ecuadorian.</p>
     <p class="tiny">
       It's all a joke between friends. Ecuador's a beautiful country with a
-      proud team — congrats on the win, seriously. Now please stop bragging. 😄
+      proud team — and hey, you genuinely <strong>qualified for the knockouts</strong>,
+      which is more than most. Congrats, seriously. 🎉 Now please stop bragging. 😄
     </p>
   </footer>
 

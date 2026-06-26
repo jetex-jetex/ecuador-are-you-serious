@@ -1,21 +1,39 @@
-# Ecuador, Are You Serious? 🇪🇨😂
+# Ecuador, Are You Serious? 🥉😂
 
-A playful, **good-natured** single-page website that lovingly roasts the Ecuador
-national soccer team — built as an inside joke for a friend who *will not stop*
+A playful, **good-natured** single-page website that lovingly roasts Ecuador's
+2026 World Cup run — built as an inside joke for a friend who *will not stop*
 bragging that Ecuador beat Germany. 🏆
 
-It's all cheeky soccer banter between friends. No insults about the country or
-its people — just teasing about one very memorable win.
+It's all cheeky soccer banter between friends, **powered by real stats**. No
+insults about the country or its people — just teasing about one very memorable
+(and very asterisked) win.
+
+## ⚽ The real facts it roasts
+
+- **Ecuador 2–1 Germany**, 25 June 2026, World Cup Group E, MetLife Stadium.
+- Despite winning, Ecuador finished **3rd in the group** — below *both* Germany
+  and Ivory Coast.
+- Germany finished **top** and had **already qualified** before kickoff — the
+  game meant nothing to them.
+- Ecuador had scored **zero goals** in the tournament before this match.
+- First two games: **lost** to Ivory Coast, **drew** Curaçao (pop. ~150k).
+- Ecuador advanced only as one of the **"best third-placed teams."**
+- Germany scored in the **2nd minute**; Ecuador won it in the **77th**.
 
 ## ✨ What's inside
 
-- **Big bold headline** with rotating taunts that cycle every few seconds.
-- **Official Excuse Generator™** — a button that spits out random funny reasons
-  the win "didn't count."
-- **Scoreboard of Shame** — absurd, totally-made-up stats that count up as you
-  scroll.
-- **Countdown timer** to the next big win… set to the year **2525**. ⏳
-- **Confetti** that bursts whenever you click *anywhere* on the page. 🎉
+- **Big bold headline**: *"You beat a team with nothing to play for… and STILL
+  finished below them."*
+- **Rotating taunts** built straight from the stats above, cycling every few
+  seconds.
+- **Group E Final Standings** table proudly showing Ecuador in 3rd, with a
+  flashing **🥉 Champions of 3rd Place** badge.
+- **Goals Before This Game** counter that dramatically ticks up… to **zero**.
+- **"Wait, YOU need excuses?"** section that reveals the absurd asterisks on the
+  win, one click at a time.
+- **Curaçao callout** — the ~150k-population country that held Ecuador to a draw.
+- **Countdown** to the next win that actually mattered (set to the year 2525).
+- **Tiny, humble confetti** + a floating "🥉 3rd place!" pop on every click.
 - Mobile-responsive, themed in Ecuador's yellow / blue / red (used ironically).
 - 100% vanilla **HTML / CSS / JS** — no frameworks, no build step.
 

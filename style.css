@@ -8,6 +8,7 @@
   --ec-yellow: #ffdd00;
   --ec-blue: #0072ce;
   --ec-red: #ef3340;
+  --bronze: #cd7f32;
   --ink: #1a1a2e;
   --paper: #fffef5;
 }
@@ -49,17 +50,28 @@ body {
   background: radial-gradient(circle at top, #fff8c4, var(--paper));
 }
 
-.flag-stripe + .headline {
+.kicker {
   margin-top: 2rem;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-size: clamp(0.75rem, 2.5vw, 1rem);
+  color: var(--ec-blue);
 }
 
 .headline {
-  font-size: clamp(2.2rem, 8vw, 5rem);
-  line-height: 1.05;
+  font-size: clamp(1.9rem, 6.5vw, 4rem);
+  line-height: 1.08;
+  margin-top: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 1px;
   color: var(--ec-blue);
   text-shadow: 3px 3px 0 var(--ec-yellow), 6px 6px 0 var(--ec-red);
+}
+
+.headline em {
+  font-style: italic;
+  color: var(--ec-red);
 }
 
 /* The playful wobbling part of the headline */
@@ -79,17 +91,19 @@ body {
   font-size: clamp(1.1rem, 4vw, 1.8rem);
   font-weight: bold;
   margin: 1.5rem auto;
-  max-width: 700px;
-  min-height: 2.5em; /* reserve space so layout doesn't jump on text swap */
+  max-width: 720px;
+  min-height: 3em; /* reserve space so layout doesn't jump on text swap */
   color: var(--ec-red);
   transition: opacity 0.4s ease;
 }
 
 .subhead {
   font-size: clamp(1rem, 3vw, 1.25rem);
-  max-width: 600px;
+  max-width: 640px;
   margin: 0 auto;
 }
+
+.subhead em { font-style: italic; }
 
 .hint {
   margin-top: 1.25rem;
@@ -122,7 +136,7 @@ main {
 }
 
 .card h2 {
-  font-size: clamp(1.4rem, 5vw, 2rem);
+  font-size: clamp(1.3rem, 5vw, 2rem);
   margin-bottom: 0.5rem;
 }
 
@@ -166,44 +180,117 @@ main {
   box-shadow: 2px 2px 0 var(--ink);
 }
 
-.excuse-output {
-  margin-top: 1.25rem;
-  font-size: clamp(1.1rem, 4vw, 1.4rem);
+/* ---------------- STANDINGS TABLE ---------------- */
+/* The flashing bronze "champions of 3rd place" badge */
+.bronze-badge {
+  display: inline-block;
+  margin: 0.5rem auto 1.25rem;
+  padding: 0.6rem 1.2rem;
   font-weight: bold;
-  font-style: italic;
-  color: var(--ec-blue);
-  min-height: 3em;
-  transition: opacity 0.3s ease;
+  font-size: clamp(0.9rem, 3.5vw, 1.3rem);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--ink);
+  background: linear-gradient(135deg, #e8b06a, var(--bronze));
+  border: 3px solid var(--ink);
+  border-radius: 50px;
+  box-shadow: 4px 4px 0 var(--ink);
+  animation: flash 1.1s steps(1) infinite;
 }
 
-/* ---------------- SCOREBOARD STATS ---------------- */
-.stats-grid {
+@keyframes flash {
+  0%, 49% { opacity: 1; transform: scale(1); }
+  50%, 100% { opacity: 0.55; transform: scale(0.97); }
+}
+
+.standings {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.5rem;
+  text-align: left;
+  font-size: clamp(0.85rem, 3vw, 1rem);
+}
+
+.standings th,
+.standings td {
+  padding: 0.6rem 0.5rem;
+  border-bottom: 2px solid #eee;
+}
+
+.standings th {
+  background: var(--ink);
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+}
+
+.standings th:first-child { border-top-left-radius: 8px; }
+.standings th:last-child { border-top-right-radius: 8px; }
+
+/* Ecuador's row, lovingly spotlighted */
+.standings tr.highlight {
+  background: var(--ec-yellow);
+  font-weight: bold;
+}
+
+.standings tr.highlight td {
+  border-bottom: 2px solid var(--bronze);
+}
+
+/* ---------------- MEGA NUMBER (goals counter) ---------------- */
+.mega-number {
+  font-size: clamp(4rem, 22vw, 9rem);
+  font-weight: bold;
+  line-height: 1;
+  color: var(--ec-red);
+  text-shadow: 4px 4px 0 var(--ink);
+  font-variant-numeric: tabular-nums;
+  margin: 0.5rem 0;
+}
+
+/* ---------------- ASTERISK LIST ---------------- */
+.asterisk-list {
+  list-style: none;
+  text-align: left;
+  max-width: 640px;
+  margin: 1.25rem auto 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 1rem;
-  margin-top: 1rem;
+  gap: 0.6rem;
 }
 
-.stat {
+.asterisk-list li {
+  background: #fff6f6;
+  border-left: 5px solid var(--ec-red);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  /* Hidden until "revealed" by script.js */
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.asterisk-list li.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------------- CURAÇAO CALLOUT ---------------- */
+.curacao-box {
   background: var(--ec-blue);
   color: #fff;
   border-radius: 14px;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  padding: 1.5rem 1rem;
+  margin-top: 0.5rem;
 }
 
-.stat-number {
-  font-size: clamp(2rem, 8vw, 3rem);
+.curacao-box .muted { color: #e7f1ff; }
+
+.big-fact {
+  font-size: clamp(2rem, 9vw, 3.5rem);
   font-weight: bold;
   color: var(--ec-yellow);
-  line-height: 1;
-}
-
-.stat-label {
-  font-size: 0.85rem;
-  margin-top: 0.5rem;
+  text-shadow: 2px 2px 0 var(--ink);
 }
 
 /* ---------------- COUNTDOWN ---------------- */
@@ -249,7 +336,7 @@ main {
 }
 
 .footer p {
-  max-width: 600px;
+  max-width: 640px;
   margin: 0.5rem auto;
 }
 
@@ -263,10 +350,30 @@ main {
   z-index: 9999;
 }
 
+/* Floating "3rd place!" celebration text popped on click */
+.celebrate-pop {
+  position: fixed;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+  font-size: clamp(1rem, 4vw, 1.6rem);
+  color: var(--bronze);
+  text-shadow: 1px 1px 0 var(--ink);
+  pointer-events: none;
+  z-index: 10000;
+  animation: floatUp 1.2s ease-out forwards;
+}
+
+@keyframes floatUp {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.6); }
+  20% { opacity: 1; }
+  100% { opacity: 0; transform: translate(-50%, -160%) scale(1); }
+}
+
 /* Respect users who prefer reduced motion: calm the animations */
 @media (prefers-reduced-motion: reduce) {
   .wobble,
-  .hint {
+  .hint,
+  .bronze-badge {
     animation: none;
   }
 }
