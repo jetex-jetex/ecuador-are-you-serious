@@ -91,6 +91,24 @@ body {
   margin: 0 auto;
 }
 
+/* Hero meme image — framed like a polaroid with a cheeky tilt */
+.hero-meme {
+  display: block;
+  width: min(380px, 80vw);
+  height: auto;
+  margin: 1.75rem auto 0;
+  border: 5px solid var(--ink);
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 8px 8px 0 var(--ec-red);
+  transform: rotate(-3deg);
+  transition: transform 0.2s ease;
+}
+
+.hero-meme:hover {
+  transform: rotate(0deg) scale(1.03);
+}
+
 .hint {
   margin-top: 1.25rem;
   font-style: italic;
