@@ -1,0 +1,272 @@
+/* ============================================================
+   Ecuador, Are You Serious? — stylesheet
+   Ecuador's flag colors, used proudly (and a little ironically):
+     yellow #FFDD00 | blue #0072CE | red #EF3340
+   ============================================================ */
+
+:root {
+  --ec-yellow: #ffdd00;
+  --ec-blue: #0072ce;
+  --ec-red: #ef3340;
+  --ink: #1a1a2e;
+  --paper: #fffef5;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* The tricolor stripe used at top of hero and footer */
+.flag-stripe {
+  height: 14px;
+  background: linear-gradient(
+    to bottom,
+    var(--ec-yellow) 0 50%,
+    var(--ec-blue) 50% 75%,
+    var(--ec-red) 75% 100%
+  );
+  width: 100%;
+}
+
+/* ---------------- HERO ---------------- */
+.hero {
+  text-align: center;
+  padding: 0 1rem 2.5rem;
+  background: radial-gradient(circle at top, #fff8c4, var(--paper));
+}
+
+.flag-stripe + .headline {
+  margin-top: 2rem;
+}
+
+.headline {
+  font-size: clamp(2.2rem, 8vw, 5rem);
+  line-height: 1.05;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--ec-blue);
+  text-shadow: 3px 3px 0 var(--ec-yellow), 6px 6px 0 var(--ec-red);
+}
+
+/* The playful wobbling part of the headline */
+.wobble {
+  display: inline-block;
+  color: var(--ec-red);
+  text-shadow: 2px 2px 0 var(--ink);
+  animation: wobble 2.5s ease-in-out infinite;
+}
+
+@keyframes wobble {
+  0%, 100% { transform: rotate(-2deg) scale(1); }
+  50% { transform: rotate(2deg) scale(1.05); }
+}
+
+.taunt {
+  font-size: clamp(1.1rem, 4vw, 1.8rem);
+  font-weight: bold;
+  margin: 1.5rem auto;
+  max-width: 700px;
+  min-height: 2.5em; /* reserve space so layout doesn't jump on text swap */
+  color: var(--ec-red);
+  transition: opacity 0.4s ease;
+}
+
+.subhead {
+  font-size: clamp(1rem, 3vw, 1.25rem);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.hint {
+  margin-top: 1.25rem;
+  font-style: italic;
+  color: var(--ec-blue);
+  animation: pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* ---------------- CARDS / SECTIONS ---------------- */
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  display: grid;
+  gap: 2rem;
+}
+
+.card {
+  background: #fff;
+  border: 4px solid var(--ink);
+  border-radius: 18px;
+  padding: 1.75rem 1.5rem;
+  text-align: center;
+  box-shadow: 8px 8px 0 var(--ec-blue);
+}
+
+.card h2 {
+  font-size: clamp(1.4rem, 5vw, 2rem);
+  margin-bottom: 0.5rem;
+}
+
+.muted {
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.tiny {
+  font-size: 0.8rem;
+}
+
+/* ---------------- BUTTONS ---------------- */
+.big-btn {
+  font-family: inherit;
+  font-size: clamp(1rem, 4vw, 1.3rem);
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 0.9rem 1.6rem;
+  border: 4px solid var(--ink);
+  border-radius: 14px;
+  background: var(--ec-yellow);
+  color: var(--ink);
+  box-shadow: 5px 5px 0 var(--ink);
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+
+.big-btn.alt {
+  background: var(--ec-red);
+  color: #fff;
+}
+
+.big-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0 var(--ink);
+}
+
+.big-btn:active {
+  transform: translate(3px, 3px);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.excuse-output {
+  margin-top: 1.25rem;
+  font-size: clamp(1.1rem, 4vw, 1.4rem);
+  font-weight: bold;
+  font-style: italic;
+  color: var(--ec-blue);
+  min-height: 3em;
+  transition: opacity 0.3s ease;
+}
+
+/* ---------------- SCOREBOARD STATS ---------------- */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.stat {
+  background: var(--ec-blue);
+  color: #fff;
+  border-radius: 14px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.stat-number {
+  font-size: clamp(2rem, 8vw, 3rem);
+  font-weight: bold;
+  color: var(--ec-yellow);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+/* ---------------- COUNTDOWN ---------------- */
+.countdown {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.time-box {
+  background: var(--ink);
+  color: var(--ec-yellow);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  min-width: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.time-box span {
+  font-size: clamp(1.5rem, 6vw, 2.4rem);
+  font-weight: bold;
+  font-variant-numeric: tabular-nums;
+}
+
+.time-box small {
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  color: #fff;
+}
+
+/* ---------------- FOOTER ---------------- */
+.footer {
+  text-align: center;
+  padding: 2rem 1rem 3rem;
+  background: var(--ink);
+  color: #fff;
+  margin-top: 2rem;
+}
+
+.footer p {
+  max-width: 600px;
+  margin: 0.5rem auto;
+}
+
+/* ---------------- CONFETTI CANVAS ---------------- */
+#confetti-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* never block clicks */
+  z-index: 9999;
+}
+
+/* Respect users who prefer reduced motion: calm the animations */
+@media (prefers-reduced-motion: reduce) {
+  .wobble,
+  .hint {
+    animation: none;
+  }
+}

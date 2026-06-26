@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Responsive: scale to device width so it looks great on phones -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ecuador, Are You Serious? 🇪🇨😂</title>
+  <meta
+    name="description"
+    content="A loving, good-natured roast of the Ecuador national soccer team. All in good fun!"
+  />
+  <link rel="stylesheet" href="style.css" />
+  <!-- Cheeky soccer-ball favicon so the browser tab is on theme -->
+  <link
+    rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>"
+  />
+</head>
+<body>
+  <!-- ============================================================
+       HERO: big bold headline + rotating taunts
+       ============================================================ -->
+  <header class="hero">
+    <div class="flag-stripe" aria-hidden="true"></div>
+
+    <h1 class="headline">
+      Ecuador, <span class="wobble">Are You Serious?</span>
+    </h1>
+
+    <!-- This line gets swapped out every few seconds by script.js -->
+    <p id="taunt" class="taunt">Loading world-class banter…</p>
+
+    <p class="subhead">
+      A loving roast of <strong>La Tri</strong> — because somebody won't stop
+      bragging about that one game. 🏆😅
+    </p>
+
+    <!-- Friendly nudge to interact -->
+    <p class="hint">Pssst… click anywhere for a surprise 🎉</p>
+  </header>
+
+  <main>
+    <!-- ============================================================
+         OFFICIAL EXCUSE GENERATOR
+         ============================================================ -->
+    <section class="card excuse-section">
+      <h2>🤓 Official Excuse Generator™</h2>
+      <p class="muted">
+        Click the button for the <em>real</em> reason that win didn't count.
+      </p>
+      <button id="excuse-btn" class="big-btn">Generate Official Excuse</button>
+      <!-- The generated excuse lands here -->
+      <p id="excuse-output" class="excuse-output">Awaiting your skepticism…</p>
+    </section>
+
+    <!-- ============================================================
+         SCOREBOARD OF SHAME (totally made-up absurd stats)
+         ============================================================ -->
+    <section class="card scoreboard-section">
+      <h2>📊 Scoreboard of Shame</h2>
+      <p class="muted">100% real, peer-reviewed, definitely-not-made-up stats.</p>
+      <div class="stats-grid">
+        <div class="stat">
+          <span class="stat-number" data-target="1">0</span>
+          <span class="stat-label">times beating Germany (and we'll NEVER hear the end of it)</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number" data-target="9000">0</span>
+          <span class="stat-label">times the story has been retold at dinner</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number" data-target="0">0</span>
+          <span class="stat-label">World Cups won (so far… we believe in you)</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number" data-target="100">0</span>
+          <span class="stat-label">% chance this site gets sent to the group chat</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number" data-target="3">0</span>
+          <span class="stat-label">altitude excuses used per match (Quito advantage™)</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number" data-target="11">0</span>
+          <span class="stat-label">players who suddenly became "legends" overnight</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         COUNTDOWN to "the next time it'll happen"
+         ============================================================ -->
+    <section class="card countdown-section">
+      <h2>⏳ Countdown to the Next Big Win</h2>
+      <p class="muted">Our scientists calculated the exact date. Mark your calendar.</p>
+      <div id="countdown" class="countdown">
+        <div class="time-box"><span id="years">0</span><small>years</small></div>
+        <div class="time-box"><span id="days">0</span><small>days</small></div>
+        <div class="time-box"><span id="hours">0</span><small>hours</small></div>
+        <div class="time-box"><span id="minutes">0</span><small>mins</small></div>
+        <div class="time-box"><span id="seconds">0</span><small>secs</small></div>
+      </div>
+      <p class="muted tiny">* Estimate may be optimistic.</p>
+    </section>
+
+    <!-- A button to deliberately trigger the confetti, too -->
+    <section class="card celebrate-section">
+      <h2>🎉 Feeling Defensive?</h2>
+      <p class="muted">Go ahead, celebrate that one win one more time.</p>
+      <button id="celebrate-btn" class="big-btn alt">Throw Confetti!</button>
+    </section>
+  </main>
+
+  <!-- ============================================================
+       FOOTER — the "all in good fun" disclaimer
+       ============================================================ -->
+  <footer class="footer">
+    <div class="flag-stripe" aria-hidden="true"></div>
+    <p>
+      💛💙❤️ Made with love (and zero hard feelings) for my favorite Ecuadorian.
+    </p>
+    <p class="tiny">
+      It's all a joke between friends. Ecuador's a beautiful country with a
+      proud team — congrats on the win, seriously. Now please stop bragging. 😄
+    </p>
+  </footer>
+
+  <!-- Confetti canvas overlay sits on top of everything -->
+  <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+  <script src="script.js"></script>
+</body>
+</html>
